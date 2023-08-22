@@ -9,7 +9,7 @@ const Greeting = () => {
         <div className="container-fluid">
         <div className="row text-center">
         <div className="col-md-6 ">
-            <h1 className="display-5 fw-bold p-5" >Find similar artists. See their gigs.</h1>
+            <h1 className="display-5 fw-bold p-5" style={{color: 'White' }} >Find similar artists. See their gigs.</h1>
             </div>
             <div className="col-md-6">
             <Form>

@@ -1,0 +1,38 @@
+.search-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 20rem;
+
+  }
+  
+  
+  .actions {
+    text-align: right;
+  }
+  
+  .actions button {
+    font: inherit;
+    cursor: pointer;
+    background-color: transparent ;
+    border: 1px solid #ff3366;
+    padding: 0.5rem 2rem;
+    border-radius: 0px;
+    margin-left: 1rem;
+  }
+  
+  .actions button:hover,
+  .actions button:active {
+    background-color: hsl(345, 100%, 60%);
+    border-color:#ff3366;
+    color: white;
+  }
+  
+  .actions .button--alt {
+    color:  #ff3366;
+  }
+  
+  .actions .button {
+    background-color: #ff3366;
+    color: white;
+  }

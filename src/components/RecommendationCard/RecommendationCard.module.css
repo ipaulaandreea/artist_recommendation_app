@@ -1,0 +1,34 @@
+.card {
+    display: flexbox;
+    width: 300px;
+    height: 120px;
+    border-radius: 15px;
+    /* box-shadow:0 2px 8px rgba(184, 23, 69); */
+     background-color: rgba(125, 125, 125, 0);
+    
+    margin:10px auto;
+    /* padding: 10px; */
+}
+
+
+
+.card img {
+    border-radius: 15px;
+    position:left;
+    max-width: 125px;
+    height: 120px;
+    
+
+}
+
+.btn {
+    background-color: #ff3366
+}
+
+.card textarea {
+    position:right;
+    color: white;
+
+  
+
+}

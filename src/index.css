@@ -1,15 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat+Alternates:wght@300&family=Roboto+Condensed:wght@300&display=swap');
+
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 body {
   margin: 0;
   background-color: #2e2d2d;
+  font-family: 'Bebas Neue', sans-serif;
 }
 

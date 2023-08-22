@@ -2,7 +2,7 @@ import classes from './App.module.css'
 import React from 'react'
 import { Container, Typography, Grid } from '@mui/material'
 import { styled } from '@mui/system'
-
+import SearchResults from './components/SearchResults/SearchResults'
 import Header from './components/Header/Header'
 import RecommendationCard from './components/RecommendationCard/RecommendationCard'
 import {Button} from 'react-bootstrap'
@@ -24,22 +24,8 @@ function App () {
   return (
 
     <Background>
-      {/* <Header/> */}
       <Greeting/>
-      <Container>
-        <Grid container spacing={5}>
-          <RecommendationCard  />
-           <RecommendationCard /> 
-           <RecommendationCard />
-          <RecommendationCard />
-           <RecommendationCard />
-           <RecommendationCard />
-          <RecommendationCard />
-           <RecommendationCard />
-        </Grid>
-
-      </Container>
-      
+<SearchResults />
     </Background>
 
 
