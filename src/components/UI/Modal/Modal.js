@@ -12,11 +12,8 @@ const ModalOverlay=props=>{
           <Row>
         <Col> <div className={classes.content}>{props.children}</div></Col>
       </Row>
-      <Button className={classes.button} type="submit">
-        LOOK UP ANOTHER ARTIST
-      </Button>
 
-     
+
 
   </div>
 };

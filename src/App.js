@@ -1,11 +1,10 @@
 import classes from './App.module.css'
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Typography, Grid } from '@mui/material'
 import { styled } from '@mui/system'
 import SearchResults from './components/SearchResults/SearchResults'
 import Header from './components/Header/Header'
 import RecommendationCard from './components/RecommendationCard/RecommendationCard'
-import {Button} from 'react-bootstrap'
 import "bootstrap/dist/css/bootstrap.min.css"
 import Greeting from './components/Greeting/Greeting'
 
@@ -20,14 +19,22 @@ const Background = styled('div')({
 })
 
 function App () {
+  const [displayResults, setDisplayResults] = useState(false)
+
+  const displayResultsHandler = () => {
+    setDisplayResults(true)
+  }
+
+  const hideResultsHandler = () => {
+    setDisplayResults(false)
+  }
   
   return (
 
     <Background>
-      <Greeting/>
-<SearchResults />
+      {displayResults && <SearchResults onHideResults={hideResultsHandler} />}
+      <Greeting onDisplayResults={displayResultsHandler} />
     </Background>
-
 
   )
 }

@@ -1,34 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist&display=swap');
+
 .card {
-    display: flexbox;
-    width: 300px;
-    height: 120px;
+    /* align-items: center; */
+    font-family: 'Urbanist', sans-serif;
+    font-size: 20px; 
+    color: white;
+    /* display: flex;
+    flex-direction: row; */
+    width: 280px;
+    height: 100px;
     border-radius: 15px;
-    /* box-shadow:0 2px 8px rgba(184, 23, 69); */
-     background-color: rgba(125, 125, 125, 0);
+    box-shadow:0 2px 8px rgba(184, 23, 69);
+    background-color: rgba(125, 125, 125);
     
-    margin:10px auto;
+    margin:10px 20px 20px 20px;
     /* padding: 10px; */
 }
 
+.card textarea{
+    
+    height: 50px;
+    color: white;
+    font-size: 1rem; 
 
+}
+p {
+    font-family: 'Quicksand', sans-serif;
+    line-height: 0.5em;
+  }
 
 .card img {
-    border-radius: 15px;
-    position:left;
-    max-width: 125px;
-    height: 120px;
-    
+    margin-right: 10px;
+    border-radius: 10px;
+    max-width: 100px;
+    height: 100px;
+      
 
 }
-
-.btn {
-    background-color: #ff3366
-}
-
-.card textarea {
-    position:right;
+.actions button {
+    margin-right: 5px;
+    background-color: black;
     color: white;
+    /* width: 70px; */
+    height: 40px;
+    border-radius: 10px;
+    font-size: 10px;
+}
 
-  
+.actions button:hover {
+    background-color: #ff3366;
+   
 
 }

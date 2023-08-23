@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist&display=swap');
+
+.artist {
+
+  display: flex;
+flex-direction: row;
+  height: 50px;
+  color: white;
+
+  
+  }
+  
+  .artist h3 {
+    flex-direction: row;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 30px;
+    line-height: 1em;
+  }
+  
+  .artist p {
+    font-family: 'Urbanist', sans-serif;
+    line-height: 1em;
+    font-size:10px;
+  }
+
+  .artist img {
+    margin-left: 2px;
+    border-radius: 10px;
+    max-width: 100px;
+    height: 100px;
+      
+
+  }
+
+.actions button {
+   
+    background-color: black;
+    color: white;
+    /* width: 70px; */
+    height: 40px;
+    border-radius: 10px;
+    font-size: 10px;
+}
+
+.actions button:hover {
+    background-color: #ff3366;
+   
+
+}
