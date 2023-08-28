@@ -1,49 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist&display=swap');
 
 .artist {
+  place-items: center;
 
-  display: flex;
+
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto 1fr;
+    grid-gap: 0.5em;
+  
+
+
+    width: 300px;
+    height: 100px;
+  }
+
+  /* display: flex;
 flex-direction: row;
   height: 50px;
   color: white;
 
   
+  } */
+  
+  .name {
+
+    font-family: 'Urbanist', sans-serif;
+    font-size: 15px;
+
   }
   
-  .artist h3 {
-    flex-direction: row;
+  .nextgig {
+
+    color: #b3b3b3;
     font-family: 'Urbanist', sans-serif;
-    font-size: 30px;
-    line-height: 1em;
-  }
-  
-  .artist p {
-    font-family: 'Urbanist', sans-serif;
-    line-height: 1em;
-    font-size:10px;
+    /* line-height: 1em; */
+    font-size:12px;
   }
 
   .artist img {
-    margin-left: 2px;
-    border-radius: 10px;
-    max-width: 100px;
-    height: 100px;
-      
+    grid-row: span 3;
 
-  }
+
+      border-radius: 50px;
+      max-width: 100px;
+      height: 100px;
+    }
+
 
 .actions button {
-   
-    background-color: black;
-    color: white;
-    /* width: 70px; */
-    height: 40px;
-    border-radius: 10px;
-    font-size: 10px;
+  color: #fff;
+  border: 1px solid white;
+  font-family:'Montserrat', sans-serif;
+  text-align: center;
+  line-height: 1;
+  font-size: 10px;
+  background-color : transparent;
+  padding: 10px;
+  outline: none;
+  border-radius: 30px;
+  margin-right: 5px;
 }
 
-.actions button:hover {
+/* .actions button:hover {
     background-color: #ff3366;
    
 
-}
+} */

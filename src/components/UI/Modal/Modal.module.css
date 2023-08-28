@@ -12,20 +12,18 @@
 
 
 .modal {
-
-
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   position: fixed;
   
-  height: 500px;
+  height: 600px;
   
   top: 10vh;
   left: 5%;
   /* width: 50%; */
 
-  background-color: hsla(0, 0%, 0%, 0.788);
+  background-color: 	#121212;
   padding: 1rem;
   border-radius: 14px;
   box-shadow: 0 2px 8px #020202;

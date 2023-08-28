@@ -1,21 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist&display=swap');
 
 .container { 
-  display: flex;
-  flex-wrap: wrap;
+
+
   padding: 10px;
   /* background-color: #000000; */
   width: 1085px;
-  height: 470px;
+  height: 500px;
+
   
 }
 
 .parent {
-  display: flex;
+  display: grid;
+  place-items: center;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto auto;
+
+
+  /* display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
+  
+  flex-wrap: wrap; */
 
 }
 
@@ -71,4 +78,5 @@
     background: #ff3366; 
     padding: 10px 30px;
     color: White;
+    grid-column: span 2;
   }

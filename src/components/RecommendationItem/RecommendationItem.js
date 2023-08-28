@@ -11,8 +11,8 @@ const RecommendationItem = props => {
           src={props.photo}
           alt='artist-img'
         ></img>
-        <h3 className={classes['artist']['name']}>{props.name}</h3>
-        <p className={classes['artist']['nextgig']}>{props.next_gig}</p>
+        <span className={classes['name']}>{props.name}</span>
+        <span className={classes['nextgig']}>{props.next_gig}</span>
         <div className={classes.actions}>
           <button type='submit'>Listen on Spotify</button>
           <button type='submit'>Buy tickets</button>
