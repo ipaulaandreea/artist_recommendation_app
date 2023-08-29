@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Container, Row, Col, Image, Card, Form, Button  } from 'react-bootstrap';
 import backgroundImage from '../../bckg3.jpg'
 import {classes} from './Greeting.module.css'; 
 import axios from 'axios';
+import ArtistContext from '../store/artist-context'
 
 
 const Greeting = (props) => {
+
+  let artistCtx=useContext(ArtistContext);
+  let artistName=artistCtx.name;
+  let artistId=artistCtx.id;
+
+
   const CLIENT_ID = '6674cfd3c7f24b579bdf58acd6f13d95'
   const REDIRECT_URI = 'http://localhost:3000/'
   const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
@@ -13,6 +20,7 @@ const Greeting = (props) => {
 
   const [token, setToken]=useState('')
   const [searchKey, setSearchKey]=useState('')
+  const [artist, setArtist]=useState('')
 
   useEffect(()=>{
     const hash=window.location.hash
@@ -31,18 +39,27 @@ const Greeting = (props) => {
     window.localStorage.removeItem('token');
   }
 
+
   const searchArtists = async (e) => {
-    const {data} = await axios.get("https://api.spotify.com/v1/search"), {
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-      params: {
-         q: searchKey,
-         type: 'artist'        
+    e.preventDefault()
+    const {data} = await axios.get("https://api.spotify.com/v1/search", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        params: {
+            q: searchKey,
+            type: "artist"
         }
-    }
-    console.log(data);
+    })
+    // console.log(data.artists.items[0].name, data.artists.items[0].id);
+    setArtist(data.artists.items[0].id);
+    artistName=data.artists.items[0].name;
+    artistId=data.artists.items[0].id;
+    console.log ("artist name", artistName, "artist id",artistId)
   }
+
+
+
 
 
     return ( 
