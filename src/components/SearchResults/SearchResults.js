@@ -2,6 +2,7 @@ import react, { useContext } from 'react';
 import classes from './SearchResults.module.css'
 import Modal from '../UI/Modal/Modal';
 import RecommendationCard from '../RecommendationCard/RecommendationCard';
+import ArtistContext from '../store/artist-context'
 
 import RecommendationItem from '../RecommendationItem/RecommendationItem';
 import photo1 from '../../photo1.jpg';
@@ -11,7 +12,6 @@ import photo4 from '../../photo4.jpg';
 import photo5 from '../../photo5.jpg';
 import photo6 from '../../photo6.jpg';
 
-import ArtistContext from '../store/artist-context';
 
 
 
@@ -51,13 +51,13 @@ const DUMMY_DATA=[
   },
 ]
 const SearchResults = (props) => {
-  const artistCtx=useContext(ArtistContext);
-  const name=artistCtx.name;
-  const id=artistCtx.id;
+  let artistCtx=useContext(ArtistContext);
+  let artistName=artistCtx.name;
+  let artistId=artistCtx.id;
 
+
+  
     return (
-      
-   
     <Modal onClose={props.onHideResults}>
       <div className={classes.container}>
 <div className={classes.parent}>
