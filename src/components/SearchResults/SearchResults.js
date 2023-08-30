@@ -3,6 +3,8 @@ import classes from './SearchResults.module.css'
 import Modal from '../UI/Modal/Modal';
 import RecommendationCard from '../RecommendationCard/RecommendationCard';
 import ArtistContext from '../store/artist-context'
+import RecommendationsContext from '../store/recommend-context'
+import RecommendationsProvider from '../store/RecommendationsProvider'
 
 import RecommendationItem from '../RecommendationItem/RecommendationItem';
 import photo1 from '../../photo1.jpg';
@@ -51,15 +53,18 @@ const DUMMY_DATA=[
   },
 ]
 const SearchResults = (props) => {
-  let artistCtx=useContext(ArtistContext);
-  let artistName=artistCtx.name;
-  let artistId=artistCtx.id;
-
+  let recommendationsCtx=useContext(RecommendationsContext);
+  debugger;
+  
+  let recommendedArtists=recommendationsCtx.artists;
+  console.log(recommendedArtists)
+  debugger;
 
   
   
     return (
     <Modal onClose={props.onHideResults}>
+      <RecommendationsProvider>
       <div className={classes.container}>
 <div className={classes.parent}>
   {/* <div> <RecommendationCard/></div>
@@ -70,14 +75,14 @@ const SearchResults = (props) => {
   <div> <RecommendationCard/></div> */}
 
 
-        {DUMMY_DATA.map((artist)=> (
+        {recommendedArtists.map((artist)=> (
            <div>
             <RecommendationItem
             id={artist.id}
             key={artist.id}
-            photo={artist.photo}
+            photo={artist.images[0]}
             name={artist.name}
-            next_gig={artist.next_gig}
+            next_gig="not yet"
             />
            </div>))}
 
@@ -93,7 +98,7 @@ const SearchResults = (props) => {
 
 
 
-    
+    </RecommendationsProvider>
     
     </Modal>
    

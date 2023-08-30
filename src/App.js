@@ -8,7 +8,7 @@ import RecommendationCard from './components/RecommendationCard/RecommendationCa
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Greeting from './components/Greeting/Greeting'
 import axios from 'axios';
-import ArtistProvider from './components/store/ArtistProvider';
+import RecommendationsProvider from './components/store/RecommendationsProvider';
 
 const Background = styled('div')({
   position: 'absolute',
@@ -38,12 +38,14 @@ function App() {
 
 
   return (
+    <RecommendationsProvider>
     <Background>
      
       {displayResults && <SearchResults onHideResults={hideResultsHandler} />}
       <Greeting onDisplayResults={displayResultsHandler} />
       
     </Background>
+    </RecommendationsProvider>
   )
 }
 

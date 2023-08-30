@@ -4,13 +4,13 @@ import backgroundImage from '../../bckg3.jpg'
 import { classes } from './Greeting.module.css'
 import axios from 'axios'
 import ArtistContext from '../store/artist-context'
-import RecommendContext from '../store/recommend-context'
+import RecommendationsContext from '../store/recommend-context'
 
 const Greeting = props => {
   let artistCtx = useContext(ArtistContext)
   let artistName = artistCtx.name
   let artistId = artistCtx.id
-  let recommendationCtx=useContext(RecommendContext)
+  let recommendationCtx=useContext(RecommendationsContext)
   let recommendationArtists=recommendationCtx['artists']
 
   const CLIENT_ID = '6674cfd3c7f24b579bdf58acd6f13d95'
@@ -74,14 +74,13 @@ const Greeting = props => {
         }
       }
     )
-      let recommendations=data.artists.slice(0,6);
-      recommendationArtists=[];
-      recommendationArtists=recommendationArtists.push(recommendations);
     
-    console.log(recommendations)
-    // recommendationArtists.push(recommendations)
+      let recommendations=data.artists.slice(0,6);
+      // recommendationArtists=[];
+      recommendationArtists.push(recommendations);
+      console.log(recommendationArtists)
+      console.log('ctx',recommendationCtx)
 
-    console.log("context:"+ recommendationArtists)
     setRecommendedArtists(recommendations)
 
   }

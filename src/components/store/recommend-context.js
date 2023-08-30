@@ -1,8 +1,10 @@
 import React from 'react'
 
-const RecommendContext = React.createContext({
-    artists: []
+const RecommendationsContext = React.createContext({
+    artists: [],
+    addRecommendations: (arr) => {}
+
  
 })
 
-export default RecommendContext
+export default RecommendationsContext;
