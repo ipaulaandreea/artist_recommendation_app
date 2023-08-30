@@ -57,6 +57,7 @@ const SearchResults = (props) => {
 
 
   
+  
     return (
     <Modal onClose={props.onHideResults}>
       <div className={classes.container}>
