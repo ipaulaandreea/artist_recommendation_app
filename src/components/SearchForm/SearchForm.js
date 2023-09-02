@@ -20,6 +20,7 @@ const SearchForm = props => {
   const REDIRECT_URI = 'http://localhost:3000/'
   const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
   const RESPONSE_TYPE = 'token'
+  const SEATGEEKCLIENT_ID='MzU4NDU3NTl8MTY5MzY1OTI0NS4wMzYyMTgy'
 
   const [token, setToken] = useState('')
   const [searchKey, setSearchKey] = useState('')
@@ -90,8 +91,25 @@ const SearchForm = props => {
     console.log("names: ",names)
     const slugs=names.map(item => slugify(item));
     console.log("slugs: ",slugs)
+    findGigs(slugs);
+  }
 
+  const findGigs = async slugs => {
+
+    const { data } = await axios.get(
+      // 'https://api.seatgeek.com/2/events?client_id=SEATGEEKCLIENT_ID'
+      'https://api.seatgeek.com/2/events?performers.slug=drake',
+{
+      headers: { 
+    Authorization: 'Basic TXpVNE5EVTNOVGw4TVRZNU16WTFPVEkwTlM0d016WXlNVGd5OmJkMTgxMDM1YmQ1NjQzNGE3NWVhYjNjYjFmZDgzZjhlNGI1ZThkMDU0YjRhYTM1MmUwMWEyOGNmMzY5YjcxOTE=', 
+    
+  }
 }
+      
+    ); 
+    console.log('gig:', data)
+}
+
 
  
 
