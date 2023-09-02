@@ -58,3 +58,13 @@
     color: white;
   }
 
+  .button {
+    font-size: 1rem; 
+    font-weight: 500; 
+    border: 0 ;
+    border-radius: 0; 
+    background: #ff3366; 
+    padding: 10px 30px;
+    color: White;
+    grid-column: span 2;
+  }

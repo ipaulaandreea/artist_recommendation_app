@@ -1,52 +1,37 @@
 import classes from './App.module.css'
-import React, { useState, useEffect } from 'react'
-// import { Container, Typography, Grid } from '@mui/material'
+import React, { useState, useEffect, useContext } from 'react'
 import { styled } from '@mui/system'
 import SearchResults from './components/SearchResults/SearchResults'
-import Header from './components/Header/Header'
-import RecommendationCard from './components/RecommendationCard/RecommendationCard'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Greeting from './components/Greeting/Greeting'
+import SearchForm from './components/SearchForm/SearchForm'
 import axios from 'axios';
-import RecommendationsProvider from './components/store/RecommendationsProvider';
-
-const Background = styled('div')({
-  position: 'absolute',
-  width: '100%',
-  height: '100%',
-  backgroundPosition: 'center',
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
-  color: 'black'
-})
-
-function App() {
+import SearchConcertsForSimilarArtists from './components/SearchConcertsForSimilarArtists/SearchConcertsForSimilarArtists.js'
+import bckg from './bckg3.jpg'
 
 
+export default function App() {
 
   const [displayResults, setDisplayResults] = useState(false)
 
 
-  
   const displayResultsHandler = () => {
+    console.log("Im in App.js")
     setDisplayResults(true)
   }
 
   const hideResultsHandler = () => {
+    console.log('im in app hide')
     setDisplayResults(false)
   }
-
+  
 
   return (
-    <RecommendationsProvider>
-    <Background>
-     
-      {displayResults && <SearchResults onHideResults={hideResultsHandler} />}
-      <Greeting onDisplayResults={displayResultsHandler} />
-      
-    </Background>
-    </RecommendationsProvider>
+  
+<div>
+      <SearchConcertsForSimilarArtists onHideResults={hideResultsHandler} onDisplayResults={displayResultsHandler}/>
+      </div>
+
+
   )
 }
 
-export default App
