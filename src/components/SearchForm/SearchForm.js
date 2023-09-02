@@ -5,6 +5,16 @@ import classes from './SearchForm.module.css'
 import axios from 'axios'
 import SearchResults from '../SearchResults/SearchResults.js'
 
+const slugify=(str)=> {
+	return str
+		.toLowerCase()
+		.trim()
+		.replace(/[^\w\s-]/g, "")
+		.replace(/[\s_-]+/g, "-")
+		.replace(/^-+|-+$/g, "");
+}
+
+
 const SearchForm = props => {
   const CLIENT_ID = '6674cfd3c7f24b579bdf58acd6f13d95'
   const REDIRECT_URI = 'http://localhost:3000/'
@@ -16,7 +26,7 @@ const SearchForm = props => {
   const [artist, setArtist] = useState('')
   const [recommendedArtists, setRecommendedArtists] = useState([])
 
-  let recommendations = []
+  // let recommendations = []
 
   useEffect(() => {
     const hash = window.location.hash
@@ -31,7 +41,7 @@ const SearchForm = props => {
       window.localStorage.setItem('token', token)
     }
     setToken(token)
-  }, [recommendations])
+  }, [recommendedArtists])
 
   const logout = () => {
     setToken('')
@@ -73,9 +83,19 @@ const SearchForm = props => {
     setRecommendedArtists(recommendations)
     props.onChange(recommendations);
     props.onDisplayResults();
-   
+    console.log(recommendations);
+    let slug=[];
+    debugger;
+    const names = recommendations.map(item => item.name);
+    console.log("names: ",names)
+    const slugs=names.map(item => slugify(item));
+    console.log("slugs: ",slugs)
 
-  }
+}
+
+ 
+
+  
 
   return (
     <div>
