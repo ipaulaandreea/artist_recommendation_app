@@ -125,6 +125,15 @@ if (!data.events[0]) {
 console.log(slug, gigObject)
   }
 
+  // const length = 6;
+  // for (let i = 0; i < length; i++) {
+  //   const combinedObject = {
+  //     "artist_info": recommendationsArr[i],
+  //     "gig_info": gigs[i]
+  //   };
+  //   combinedArray.push(combinedObject);
+  // }
+  
 // let recommendationObject={
 //     "artist": recommendation,
 //     "gig": gigObject
