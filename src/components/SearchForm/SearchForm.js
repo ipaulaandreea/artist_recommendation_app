@@ -5,29 +5,29 @@ import classes from './SearchForm.module.css'
 import axios from 'axios'
 import SearchResults from '../SearchResults/SearchResults.js'
 
-const slugify=(str)=> {
-	return str
-		.toLowerCase()
-		.trim()
-		.replace(/[^\w\s-]/g, "")
-		.replace(/[\s_-]+/g, "-")
-		.replace(/^-+|-+$/g, "");
+const slugify = str => {
+  return str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '')
 }
-
 
 const SearchForm = props => {
   const CLIENT_ID = '6674cfd3c7f24b579bdf58acd6f13d95'
   const REDIRECT_URI = 'http://localhost:3000/'
   const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
   const RESPONSE_TYPE = 'token'
-  const SEATGEEKCLIENT_ID='MzU4NDU3NTl8MTY5MzY1OTI0NS4wMzYyMTgy'
+  const SEATGEEKCLIENT_ID = 'MzU4NDU3NTl8MTY5MzY1OTI0NS4wMzYyMTgy'
 
   const [token, setToken] = useState('')
   const [searchKey, setSearchKey] = useState('')
   const [artist, setArtist] = useState('')
   const [recommendedArtists, setRecommendedArtists] = useState([])
 
-  // let recommendations = []
+
+
 
   useEffect(() => {
     const hash = window.location.hash
@@ -65,7 +65,6 @@ const SearchForm = props => {
     let artistId = data.artists.items[0].id
     console.log('artist name', artistName, 'artist id', artistId)
     recommendArtist(artistId)
-    
   }
 
   const recommendArtist = async id => {
@@ -82,52 +81,81 @@ const SearchForm = props => {
     )
     const recommendations = data.artists.slice(0, 6)
     setRecommendedArtists(recommendations)
-    props.onChange(recommendations);
-    props.onDisplayResults();
-    console.log(recommendations);
-    let slug=[];
-    debugger;
-    const names = recommendations.map(item => item.name);
-    console.log("names: ",names)
-    const slugs=names.map(item => slugify(item));
-    console.log("slugs: ",slugs)
-    findGigs(slugs);
+    props.onChange(recommendations)
+    props.onDisplayResults()
+    console.log(recommendations)
+    let slug = []
+    const names = recommendations.map(item => item.name)
+    console.log('names: ', names)
+    const slugs = names.map(item => slugify(item))
+    console.log('slugs: ', slugs)
+    for (let i = 0; i < slugs.length; i++) {
+      const slug = slugs[i]
+      findGigs(slug)
+    }
   }
 
-  const findGigs = async slugs => {
-
+  const findGigs = async slug => {
     const { data } = await axios.get(
-      // 'https://api.seatgeek.com/2/events?client_id=SEATGEEKCLIENT_ID'
-      'https://api.seatgeek.com/2/events?performers.slug=drake',
-{
-      headers: { 
-    Authorization: 'Basic TXpVNE5EVTNOVGw4TVRZNU16WTFPVEkwTlM0d016WXlNVGd5OmJkMTgxMDM1YmQ1NjQzNGE3NWVhYjNjYjFmZDgzZjhlNGI1ZThkMDU0YjRhYTM1MmUwMWEyOGNmMzY5YjcxOTE=', 
-    
+      `https://api.seatgeek.com/2/events?performers.slug=${slug}`,
+      {
+        headers: {
+          Authorization:
+            'Basic TXpVNE5EVTNOVGw4TVRZNU16WTFPVEkwTlM0d016WXlNVGd5OmJkMTgxMDM1YmQ1NjQzNGE3NWVhYjNjYjFmZDgzZjhlNGI1ZThkMDU0YjRhYTM1MmUwMWEyOGNmMzY5YjcxOTE='
+        }
+      }
+    )
+let gig=""
+let gigObject={}
+if (!data.events[0]) {
+  gig ="No upcoming event"
+  gigObject=gig;
+} else {
+  gig = data.events[0]
+  gigObject={ 
+    "name": gig["venue"]["name"],
+    "state":  gig["venue"]["state"],
+    "city": gig["venue"]["city"],
+    "date":  gig['datetime_utc'],
+    "tickets": gig["venue"]["url"]
+
   }
-}
-      
-    ); 
-    console.log('gig:', data)
-}
-
-
  
+}
+console.log(slug, gigObject)
+  }
 
-  
+// let recommendationObject={
+//     "artist": recommendation,
+//     "gig": gigObject
+//   }
+
+// state-ul final: [
+//   artist: name, photo, "name", city, URL.
+// ]
 
   return (
     <div>
-      <h1 className='display-5 fw-bold p-5' style={{ color: 'White' }}>Find similar artists. See their gigs.</h1>
+      <h1 className='display-5 fw-bold p-5' style={{ color: 'White' }}>
+        Find similar artists. See their gigs.
+      </h1>
       <div>
         {!token ? (
-          <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>
-            Login to Spotify </a>) : (<button onClick={logout}>Logout</button>)}
+          <a
+            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+          >
+            Login to Spotify{' '}
+          </a>
+        ) : (
+          <button onClick={logout}>Logout</button>
+        )}
         <div className='col-md-6'>
           <Form onSubmit={submitHandler}>
             <input type='text' onChange={e => setSearchKey(e.target.value)} />
-            <Button className={classes.button} type='submit'>SEARCH</Button>
+            <Button className={classes.button} type='submit'>
+              SEARCH
+            </Button>
           </Form>
-        
         </div>
       </div>
     </div>
