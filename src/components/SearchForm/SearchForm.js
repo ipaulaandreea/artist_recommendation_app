@@ -26,9 +26,6 @@ const SearchForm = props => {
   const [artist, setArtist] = useState('')
   const [recommendedArtists, setRecommendedArtists] = useState([])
 
-
-
-
   useEffect(() => {
     const hash = window.location.hash
     let token = window.localStorage.getItem('token')
@@ -80,35 +77,27 @@ const SearchForm = props => {
       }
     )
     const recommendations = data.artists.slice(0, 6)
-    // setRecommendedArtists(recommendations)
-    // props.onChange(recommendations)
-    // props.onDisplayResults()
-    console.log(recommendations)
-    // useEffect(() => {
     let slug = []
     const names = recommendations.map(item => item.name)
     console.log('names: ', names)
     const slugs = names.map(item => slugify(item))
     console.log('slugs: ', slugs)
-    let result;
-    let promises = [];
+    let result
+    let promises = []
     for (let i = 0; i < slugs.length; i++) {
-
-      promises.push(findGigs(slugs[i]));
+      promises.push(findGigs(slugs[i]))
     }
 
-      result= await Promise.all(promises);
-      for(let i = 0; i < recommendations.length; i++){
-
-        recommendations[i]['gigs'] = result[i];
+    result = await Promise.all(promises)
+    for (let i = 0; i < recommendations.length; i++) {
+      recommendations[i]['gigs'] = result[i]
     }
     console.log(recommendations)
 
     setRecommendedArtists(recommendations)
     props.onChange(recommendations)
     props.onDisplayResults()
-}
-
+  }
 
   const findGigs = async slug => {
     const { data } = await axios.get(
@@ -121,50 +110,29 @@ const SearchForm = props => {
       }
     )
     // return data;
-let gig=""
-let gigObject={}
-if (!data.events[0]) {
-  gigObject={ 
-    "name": "No upcoming event",
-    "state": "",
-    "city": "",
-    "date":  "",
-    "tickets": ""
+    let gig = ''
+    let gigObject = {}
+    if (!data.events[0]) {
+      gigObject = {
+        name: 'No upcoming event',
+        state: '',
+        city: '',
+        date: '',
+        tickets: ''
+      }
+      return gigObject
+    } else {
+      gig = data.events[0]
+      gigObject = {
+        name: gig['venue']['name'],
+        state: gig['venue']['state'],
+        city: gig['venue']['city'],
+        date: gig['datetime_utc'],
+        tickets: gig['venue']['url']
+      }
+      return gigObject
+    }
   }
-  return gigObject;
-} else {
-  gig = data.events[0]
-  gigObject={ 
-    "name": gig["venue"]["name"],
-    "state":  gig["venue"]["state"],
-    "city": gig["venue"]["city"],
-    "date":  gig['datetime_utc'],
-    "tickets": gig["venue"]["url"]
-  }
-  return gigObject;
- 
-}
-
-  }
-
-
-  // const length = 6;
-  // for (let i = 0; i < length; i++) {
-  //   const combinedObject = {
-  //     "artist_info": recommendationsArr[i],
-  //     "gig_info": gigs[i]
-  //   };
-  //   combinedArray.push(combinedObject);
-  // }
-  
-// let recommendationObject={
-//     "artist": recommendation,
-//     "gig": gigObject
-//   }
-
-// state-ul final: [
-//   artist: name, photo, "name", city, URL.
-// ]
 
   return (
     <div>
@@ -181,7 +149,7 @@ if (!data.events[0]) {
         ) : (
           <button onClick={logout}>Logout</button>
         )}
-        <div className='col-md-6'>
+        <div className='container'>
           <Form onSubmit={submitHandler}>
             <input type='text' onChange={e => setSearchKey(e.target.value)} />
             <Button className={classes.button} type='submit'>

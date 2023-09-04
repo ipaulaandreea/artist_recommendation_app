@@ -5,24 +5,21 @@ import Modal from '../UI/Modal/Modal.js'
 
 const SearchConcertsForSimilarArtists = props => {
 
-    let [recommendationsState, setRecommendationsState] = useState([]);
+    const [recommendationsState, setRecommendationsState] = useState([]);
 
     const handleState = (recommendations) => {
         setRecommendationsState(recommendations);
-        console.log("I am in Search...", recommendationsState);
     }
     const [displayModal, setDisplayModal] = useState(false)
 
 
     const displayResultsHandler = () => {
         setDisplayModal(true);
-        console.log("Im in searchConcerts")
         props.onDisplayResults();
     }
   
     const hideResultsHandler = () => {
         setDisplayModal(false);
-        console.log("Im in hide")
         props.onHideResults()
     }
 
