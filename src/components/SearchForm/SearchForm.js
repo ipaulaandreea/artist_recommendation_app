@@ -80,20 +80,35 @@ const SearchForm = props => {
       }
     )
     const recommendations = data.artists.slice(0, 6)
-    setRecommendedArtists(recommendations)
-    props.onChange(recommendations)
-    props.onDisplayResults()
+    // setRecommendedArtists(recommendations)
+    // props.onChange(recommendations)
+    // props.onDisplayResults()
     console.log(recommendations)
+    // useEffect(() => {
     let slug = []
     const names = recommendations.map(item => item.name)
     console.log('names: ', names)
     const slugs = names.map(item => slugify(item))
     console.log('slugs: ', slugs)
+    let result;
+    let promises = [];
     for (let i = 0; i < slugs.length; i++) {
-      const slug = slugs[i]
-      findGigs(slug)
+
+      promises.push(findGigs(slugs[i]));
     }
-  }
+
+      result= await Promise.all(promises);
+      for(let i = 0; i < recommendations.length; i++){
+
+        recommendations[i]['gigs'] = result[i];
+    }
+    console.log(recommendations)
+
+    setRecommendedArtists(recommendations)
+    props.onChange(recommendations)
+    props.onDisplayResults()
+}
+
 
   const findGigs = async slug => {
     const { data } = await axios.get(
@@ -105,11 +120,18 @@ const SearchForm = props => {
         }
       }
     )
+    // return data;
 let gig=""
 let gigObject={}
 if (!data.events[0]) {
-  gig ="No upcoming event"
-  gigObject=gig;
+  gigObject={ 
+    "name": "No upcoming event",
+    "state": "",
+    "city": "",
+    "date":  "",
+    "tickets": ""
+  }
+  return gigObject;
 } else {
   gig = data.events[0]
   gigObject={ 
@@ -118,12 +140,13 @@ if (!data.events[0]) {
     "city": gig["venue"]["city"],
     "date":  gig['datetime_utc'],
     "tickets": gig["venue"]["url"]
-
   }
+  return gigObject;
  
 }
-console.log(slug, gigObject)
+
   }
+
 
   // const length = 6;
   // for (let i = 0; i < length; i++) {

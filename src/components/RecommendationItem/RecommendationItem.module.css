@@ -48,7 +48,8 @@ flex-direction: row;
     }
 
 
-.actions button {
+.actions a {
+  text-decoration: none;
   color: #fff;
   border: 1px solid white;
   font-family:'Montserrat', sans-serif;
