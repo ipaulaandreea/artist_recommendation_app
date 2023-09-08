@@ -157,8 +157,9 @@ const SearchForm = props => {
             {/* <input type='text' 
              placeholder="Search for an artist..."
              onChange= {e => setSearchKey(e.target.value)} /> */}
-             <SearchBar data={recommendedArtists}/>
-            <Button className={classes.button} type='submit'>
+             {/* <SearchBar data={recommendedArtists}/> */}
+             <SearchBar onSetSearchKey={e => setSearchKey(e)} />
+            <Button className={classes.button} type='submit' onClick={submitHandler}>
               SEARCH
             </Button>
           </Form>

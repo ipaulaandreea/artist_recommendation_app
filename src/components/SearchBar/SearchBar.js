@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import classes from './SearchBar.module.css'
 
-const SearchBar = ({ data }) => {
+// const SearchBar = ({ props, data }) => {
+  const SearchBar = (props) => {
   const [filteredData, setFilteredData] = useState([])
   const [wordEntered, setWordEntered] = useState('')
 
@@ -38,6 +39,7 @@ const SearchBar = ({ data }) => {
       console.log(result)
 
       setFilteredData(result)
+      props.onSetSearchKey(wordEntered)
     }
   }
 
