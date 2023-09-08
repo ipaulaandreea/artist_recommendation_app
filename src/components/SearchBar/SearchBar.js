@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { classes } from './SearchBar.module.css'
+import classes from './SearchBar.module.css'
 
 const SearchBar = ({ data }) => {
   const [filteredData, setFilteredData] = useState([])
@@ -47,8 +47,8 @@ const SearchBar = ({ data }) => {
   }
 
   return (
-    <div className='search'>
-      <div className='searchInputs'>
+    <div className={classes.search}>
+      <div className={classes.searchInputs}>
         <input
           type='text'
           placeholder='Search for your favorite artist...'
@@ -64,9 +64,9 @@ const SearchBar = ({ data }) => {
           </div> */}
       </div>
 
-        <div className='dataResult'>
+        <div className={classes.dataResult}>
           {filteredData.map(item =>( 
-              <a className='dataItem'>
+              <a className={classes.dataItem}>
                 <p>{item.name} </p>
               </a>
             ))
