@@ -4,6 +4,7 @@ import backgroundImage from '../../bckg3.jpg'
 import classes from './SearchForm.module.css'
 import axios from 'axios'
 import SearchResults from '../SearchResults/SearchResults.js'
+import SearchBar from '../SearchBar/SearchBar.js'
 
 const slugify = str => {
   return str
@@ -45,6 +46,7 @@ const SearchForm = props => {
     setToken('')
     window.localStorage.removeItem('token')
   }
+
 
   const submitHandler = async e => {
     e.preventDefault()
@@ -134,6 +136,7 @@ const SearchForm = props => {
     }
   }
 
+
   return (
     <div>
       <h1 className='display-5 fw-bold p-5' style={{ color: 'White' }}>
@@ -151,7 +154,10 @@ const SearchForm = props => {
         )}
         <div className='container'>
           <Form onSubmit={submitHandler}>
-            <input type='text' onChange={e => setSearchKey(e.target.value)} />
+            {/* <input type='text' 
+             placeholder="Search for an artist..."
+             onChange= {e => setSearchKey(e.target.value)} /> */}
+             <SearchBar data={recommendedArtists}/>
             <Button className={classes.button} type='submit'>
               SEARCH
             </Button>
