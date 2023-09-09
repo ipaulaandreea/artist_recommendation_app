@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import classes from './SearchBar.module.css'
+import Spinner from 'react-bootstrap/Spinner';
+
 
 // const SearchBar = ({ props, data }) => {
   const SearchBar = (props) => {
   const [filteredData, setFilteredData] = useState([])
   const [wordEntered, setWordEntered] = useState('')
+  const [displayList, setDisplayList] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
 
   useEffect(() => {
     const timer=setTimeout(() => {
       handleFilter();
-    }, 2500); 
+    }, 1500); 
     return ()=> clearTimeout(timer) 
   }, [wordEntered]);
 
@@ -19,13 +23,14 @@ import classes from './SearchBar.module.css'
 
   const handleFilter = async () => {  
     const searchWord = wordEntered;
-
+  
     let result=[]
     if (!searchWord || searchWord === '') {
       setFilteredData([])
     } else {
       result = await getSearchResults(searchWord)
-      
+      setIsLoading(false)
+      setDisplayList(true)
       console.log(result)
 
       setFilteredData(result)
@@ -60,6 +65,9 @@ import classes from './SearchBar.module.css'
   }
 
 const handleInputChange=(event)=>{
+  setFilteredData([])
+  setIsLoading(true);
+
   setWordEntered(event.target.value)
 
 }
@@ -79,7 +87,6 @@ const handleItemClick = (item) => {
           placeholder='Search for your favorite artist...'
           value={wordEntered}
           onChange={e=>handleInputChange(e)}
-          // onChange={handleFilter}
         />
         {/* <div className="searchIcon">
             {filteredData.length === 0 ? (
@@ -90,7 +97,14 @@ const handleItemClick = (item) => {
           </div> */}
       </div>
 
+
+      {/* <div className={classes.dataResult}> */}
+    {(displayList && wordEntered!=="")  &&
         <div className={classes.dataResult}>
+          {isLoading && 
+          <Spinner className={classes.spinner} animation="border" role="status" >
+    </Spinner>
+      } 
 
           {filteredData.map(item =>( 
             <a className={classes.dataItem} onClick={() => handleItemClick(item)}>
@@ -101,6 +115,7 @@ const handleItemClick = (item) => {
           }
       
         </div>
+  }
 
     </div>
   )
