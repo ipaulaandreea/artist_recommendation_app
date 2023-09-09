@@ -2,28 +2,26 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import classes from './SearchBar.module.css'
 import Spinner from 'react-bootstrap/Spinner';
+import { BiSearch } from 'react-icons/bi';
+import { MdClear } from 'react-icons/md';
 
 
-// const SearchBar = ({ props, data }) => {
+
   const SearchBar = (props) => {
   const [filteredData, setFilteredData] = useState([])
   const [wordEntered, setWordEntered] = useState('')
   const [displayList, setDisplayList] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-
   useEffect(() => {
     const timer=setTimeout(() => {
       handleFilter();
-    }, 1500); 
+    }, 1000); 
     return ()=> clearTimeout(timer) 
   }, [wordEntered]);
 
-
-
   const handleFilter = async () => {  
     const searchWord = wordEntered;
-  
     let result=[]
     if (!searchWord || searchWord === '') {
       setFilteredData([])
@@ -31,8 +29,6 @@ import Spinner from 'react-bootstrap/Spinner';
       result = await getSearchResults(searchWord)
       setIsLoading(false)
       setDisplayList(true)
-      console.log(result)
-
       setFilteredData(result)
       props.onSetSearchKey(wordEntered)
     }
@@ -42,7 +38,6 @@ import Spinner from 'react-bootstrap/Spinner';
     setFilteredData([])
     setWordEntered('')
   }
-
 
   const getSearchResults = async e => {
     let token = window.localStorage.getItem('token')
@@ -66,8 +61,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 const handleInputChange=(event)=>{
   setFilteredData([])
-  setIsLoading(true);
-
+  setIsLoading(true)
   setWordEntered(event.target.value)
 
 }
@@ -78,7 +72,6 @@ const handleItemClick = (item) => {
 
 };
 
-
   return (
     <div className={classes.search}>
       <div className={classes.searchInputs}>
@@ -88,37 +81,30 @@ const handleItemClick = (item) => {
           value={wordEntered}
           onChange={e=>handleInputChange(e)}
         />
-        {/* <div className="searchIcon">
+        <div className="searchIcon">
             {filteredData.length === 0 ? (
-              <SearchIcon />
+              <BiSearch/>
             ) : (
-              <CloseIcon id="clearBtn" onClick={clearInput} />
+              <MdClear id="clearBtn" onClick={clearInput} />
             )}
-          </div> */}
+          </div>
       </div>
 
-
-      {/* <div className={classes.dataResult}> */}
     {(displayList && wordEntered!=="")  &&
         <div className={classes.dataResult}>
           {isLoading && 
           <Spinner className={classes.spinner} animation="border" role="status" >
     </Spinner>
       } 
-
           {filteredData.map(item =>( 
             <a className={classes.dataItem} onClick={() => handleItemClick(item)}>
                 <p>{item.name}</p>
                 {/* adauga si imaginea */}
               </a>
-            ))
-          }
-      
+            ))}
         </div>
   }
-
     </div>
-  )
-}
+  )}
 
 export default SearchBar

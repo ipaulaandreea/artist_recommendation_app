@@ -64,6 +64,7 @@ const SearchForm = props => {
     let artistId = data.artists.items[0].id
     console.log('artist name', artistName, 'artist id', artistId)
     recommendArtist(artistId)
+    // setArtist('')
   }
 
   const recommendArtist = async id => {
@@ -99,6 +100,8 @@ const SearchForm = props => {
     setRecommendedArtists(recommendations)
     props.onChange(recommendations)
     props.onDisplayResults()
+
+   
   }
 
   const findGigs = async slug => {
@@ -134,6 +137,13 @@ const SearchForm = props => {
       }
       return gigObject
     }
+
+  }
+
+  
+  const clearInput = () => {
+    setArtist('')
+    setRecommendedArtists([])
   }
 
 
