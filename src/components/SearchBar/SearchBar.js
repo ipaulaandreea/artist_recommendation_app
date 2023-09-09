@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import classes from './SearchBar.module.css'
 
@@ -6,6 +6,38 @@ import classes from './SearchBar.module.css'
   const SearchBar = (props) => {
   const [filteredData, setFilteredData] = useState([])
   const [wordEntered, setWordEntered] = useState('')
+
+
+  useEffect(() => {
+    const timer=setTimeout(() => {
+      handleFilter();
+    }, 2500); 
+    return ()=> clearTimeout(timer) 
+  }, [wordEntered]);
+
+
+
+  const handleFilter = async () => {  
+    const searchWord = wordEntered;
+
+    let result=[]
+    if (!searchWord || searchWord === '') {
+      setFilteredData([])
+    } else {
+      result = await getSearchResults(searchWord)
+      
+      console.log(result)
+
+      setFilteredData(result)
+      props.onSetSearchKey(wordEntered)
+    }
+  }
+
+  const clearInput = () => {
+    setFilteredData([])
+    setWordEntered('')
+  }
+
 
   const getSearchResults = async e => {
     let token = window.localStorage.getItem('token')
@@ -27,26 +59,17 @@ import classes from './SearchBar.module.css'
     return recommendations;
   }
 
-  const handleFilter = async event => {
-    const searchWord = event.target.value
-    setWordEntered(searchWord)
-    let result=[]
-    if (searchWord === '') {
-      setFilteredData([])
-    } else {
-      result = await getSearchResults(searchWord)
-      
-      console.log(result)
+const handleInputChange=(event)=>{
+  setWordEntered(event.target.value)
 
-      setFilteredData(result)
-      props.onSetSearchKey(wordEntered)
-    }
-  }
+}
 
-  const clearInput = () => {
-    setFilteredData([])
-    setWordEntered('')
-  }
+const handleItemClick = (item) => {
+  console.log('Item selected:', item.name);
+  setWordEntered(item.name)
+
+};
+
 
   return (
     <div className={classes.search}>
@@ -55,7 +78,8 @@ import classes from './SearchBar.module.css'
           type='text'
           placeholder='Search for your favorite artist...'
           value={wordEntered}
-          onChange={e => handleFilter(e)}
+          onChange={e=>handleInputChange(e)}
+          // onChange={handleFilter}
         />
         {/* <div className="searchIcon">
             {filteredData.length === 0 ? (
@@ -67,12 +91,15 @@ import classes from './SearchBar.module.css'
       </div>
 
         <div className={classes.dataResult}>
+
           {filteredData.map(item =>( 
-              <a className={classes.dataItem}>
-                <p>{item.name} </p>
+            <a className={classes.dataItem} onClick={() => handleItemClick(item)}>
+                <p>{item.name}</p>
+                {/* adauga si imaginea */}
               </a>
             ))
           }
+      
         </div>
 
     </div>
