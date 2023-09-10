@@ -81,7 +81,7 @@ const handleItemClick = (item) => {
           value={wordEntered}
           onChange={e=>handleInputChange(e)}
         />
-        <div className="searchIcon">
+        <div className={classes.searchIcon}>
             {filteredData.length === 0 ? (
               <BiSearch/>
             ) : (
@@ -98,8 +98,12 @@ const handleItemClick = (item) => {
       } 
           {filteredData.map(item =>( 
             <a className={classes.dataItem} onClick={() => handleItemClick(item)}>
+          {item.images && item.images[0] && item.images[0].url ? (
+      <img src={item.images[0].url} alt='artist' style={{ height: 40, width: 40, borderRadius: 50 }}/>
+    ) : (
+        <div className={classes.noImageText} style={{ height: 40, width: 40, borderRadius: 50 }} ></div>
+    )}  
                 <p>{item.name}</p>
-                {/* adauga si imaginea */}
               </a>
             ))}
         </div>

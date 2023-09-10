@@ -7,7 +7,6 @@ export default function App() {
 
   const [displayResults, setDisplayResults] = useState(false)
 
-
   const displayResultsHandler = () => {
     setDisplayResults(true)
   }
@@ -16,9 +15,7 @@ export default function App() {
     setDisplayResults(false)
   }
   
-
   return (
-  
 <div>
       <SearchConcertsForSimilarArtists onHideResults={hideResultsHandler} onDisplayResults={displayResultsHandler}/>
       </div>
