@@ -63,6 +63,7 @@ const handleInputChange=(event)=>{
   setFilteredData([])
   setIsLoading(true)
   setWordEntered(event.target.value)
+  handleFilter()
 
 }
 

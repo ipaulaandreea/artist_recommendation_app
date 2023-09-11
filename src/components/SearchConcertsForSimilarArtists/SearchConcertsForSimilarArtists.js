@@ -1,36 +1,43 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react'
 import SearchForm from '../SearchForm/SearchForm.js'
 import SearchResults from '../SearchResults/SearchResults.js'
 import Modal from '../UI/Modal/Modal.js'
 
 const SearchConcertsForSimilarArtists = props => {
+  const [recommendationsState, setRecommendationsState] = useState([])
+  const [displayModal, setDisplayModal] = useState(false)
 
-    const [recommendationsState, setRecommendationsState] = useState([]);
+  useEffect(() => { 
+    console.log('state:',recommendationsState)
+  }, [recommendationsState]);
 
-    const handleState = (recommendations) => {
-        setRecommendationsState(recommendations);
-    }
-    const [displayModal, setDisplayModal] = useState(false)
+  const handleState = recommendations => {
+    setRecommendationsState(prevRecommendations=>recommendations)
+  }
 
+  const displayModalHandler = () => {
+    setDisplayModal(true)
 
-    const displayResultsHandler = () => {
-        setDisplayModal(true);
-        props.onDisplayResults();
-    }
+  }
+
+  const hideModalHandler = () => {
+    setDisplayModal(false)
   
-    const hideResultsHandler = () => {
-        setDisplayModal(false);
-        props.onHideResults()
-    }
+    setRecommendationsState([])
+  }
 
-return (
+  return (
     <div>
-    <SearchForm onChange = {handleState} onDisplayResults={displayResultsHandler}/> 
-    { displayModal && <Modal onClose={hideResultsHandler}>
-    <SearchResults onHideResults={hideResultsHandler} recommendations={recommendationsState} />
-    </Modal>}
+      <SearchForm
+        onChange={handleState}
+        onDisplayModal={displayModalHandler}
+      />
+      {displayModal && (
+        <Modal onClose={hideModalHandler}>
+          <SearchResults recommendations={recommendationsState} />
+        </Modal>
+      )}
     </div>
-)
+  )
 }
-
-export default SearchConcertsForSimilarArtists;
+export default SearchConcertsForSimilarArtists

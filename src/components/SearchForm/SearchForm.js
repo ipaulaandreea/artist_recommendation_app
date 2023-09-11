@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Image, Card, Form, Button } from 'react-bootstrap'
 import backgroundImage from '../../bckg3.jpg'
 import classes from './SearchForm.module.css'
@@ -27,6 +27,7 @@ const SearchForm = props => {
   const [artist, setArtist] = useState('')
   const [recommendedArtists, setRecommendedArtists] = useState([])
 
+
   useEffect(() => {
     const hash = window.location.hash
     let token = window.localStorage.getItem('token')
@@ -47,9 +48,12 @@ const SearchForm = props => {
     window.localStorage.removeItem('token')
   }
 
-
   const submitHandler = async e => {
-    e.preventDefault()
+    props.onDisplayModal()
+      e.preventDefault()
+
+    if (!searchKey) return;
+   
     const { data } = await axios.get('https://api.spotify.com/v1/search', {
       headers: {
         Authorization: `Bearer ${token}`
@@ -64,7 +68,7 @@ const SearchForm = props => {
     let artistId = data.artists.items[0].id
     console.log('artist name', artistName, 'artist id', artistId)
     recommendArtist(artistId)
-    // setArtist('')
+    setSearchKey('')
   }
 
   const recommendArtist = async id => {
@@ -99,9 +103,6 @@ const SearchForm = props => {
 
     setRecommendedArtists(recommendations)
     props.onChange(recommendations)
-    props.onDisplayResults()
-
-   
   }
 
   const findGigs = async slug => {
@@ -114,7 +115,6 @@ const SearchForm = props => {
         }
       }
     )
-    // return data;
     let gig = ''
     let gigObject = {}
     if (!data.events[0]) {
@@ -140,12 +140,10 @@ const SearchForm = props => {
 
   }
 
-  
   const clearInput = () => {
     setArtist('')
     setRecommendedArtists([])
   }
-
 
   return (
     <div>

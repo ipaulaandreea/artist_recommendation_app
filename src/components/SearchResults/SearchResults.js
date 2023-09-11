@@ -3,6 +3,8 @@ import classes from './SearchResults.module.css'
 import Modal from '../UI/Modal/Modal'
 import RecommendationCard from '../RecommendationCard/RecommendationCard'
 import RecommendationItem from '../RecommendationItem/RecommendationItem'
+import Spinner from 'react-bootstrap/Spinner';
+
 // import photo1 from '../../photo1.jpg'
 // import photo2 from '../../photo2.jpg'
 // import photo3 from '../../photo3.jpg'
@@ -50,15 +52,13 @@ import RecommendationItem from '../RecommendationItem/RecommendationItem'
 //   }
 // ]
 const SearchResults =({recommendations}) => {
- 
-
-
-
-
-
-
   return (
 <div>
+
+  {
+  Object.keys(recommendations).length === 0 &&
+  <Spinner animation='border' role='status' id="idul"></Spinner>
+  }
       <div className={classes.container}>
         <div className={classes.parent}>
           {recommendations.map(artist => (
