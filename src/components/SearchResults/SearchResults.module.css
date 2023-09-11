@@ -2,7 +2,7 @@
 
 .container { 
 
-
+  position: relative;
   padding: 10px;
   /* background-color: #000000; */
   width: 1085px;
@@ -81,4 +81,13 @@
     grid-column: span 2;
   }
 
-  
+.spinner {
+  color: white;
+  width: 75px;
+  height: 75px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+
+}

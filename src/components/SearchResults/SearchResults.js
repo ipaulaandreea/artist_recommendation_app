@@ -54,12 +54,13 @@ import Spinner from 'react-bootstrap/Spinner';
 const SearchResults =({recommendations}) => {
   return (
 <div>
-
+<div className={classes.container}>
   {
   Object.keys(recommendations).length === 0 &&
-  <Spinner animation='border' role='status' id="idul"></Spinner>
+  <Spinner className={classes.spinner} animation='border' role='status' id="idul"></Spinner>
   }
-      <div className={classes.container}>
+  
+
         <div className={classes.parent}>
           {recommendations.map(artist => (
             <div>
@@ -75,6 +76,7 @@ const SearchResults =({recommendations}) => {
             </div>
           ))}
         </div>
+
       </div>
       </div>
 
