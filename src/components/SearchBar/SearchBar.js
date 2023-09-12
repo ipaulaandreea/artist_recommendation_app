@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef  } from 'react'
 import axios from 'axios'
 import classes from './SearchBar.module.css'
 import Spinner from 'react-bootstrap/Spinner';
@@ -13,15 +13,18 @@ import { MdClear } from 'react-icons/md';
   const [displayList, setDisplayList] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
+  const inputRef = useRef(null);
+
   useEffect(() => {
     const timer=setTimeout(() => {
       handleFilter();
-    }, 1000); 
+    }, 5000); 
     return ()=> clearTimeout(timer) 
   }, [wordEntered]);
 
-  const handleFilter = async () => {  
-    const searchWord = wordEntered;
+    const handleFilter = async () => {  
+      const searchWord= inputRef.current.value;
+    // const searchWord = wordEntered;
     let result=[]
     if (!searchWord || searchWord === '') {
       setFilteredData([])
@@ -30,13 +33,18 @@ import { MdClear } from 'react-icons/md';
       setIsLoading(false)
       setDisplayList(true)
       setFilteredData(result)
-      props.onSetSearchKey(wordEntered)
+      props.onSetSearchKey(searchWord)
+
     }
   }
 
   const clearInput = () => {
+    inputRef.current.value=""
     setFilteredData([])
     setWordEntered('')
+    
+    setDisplayList(false)
+
   }
 
   const getSearchResults = async e => {
@@ -60,7 +68,6 @@ import { MdClear } from 'react-icons/md';
   }
 
 const handleInputChange=(event)=>{
-  setFilteredData([])
   setIsLoading(true)
   setWordEntered(event.target.value)
   handleFilter()
@@ -68,26 +75,45 @@ const handleInputChange=(event)=>{
 }
 
 const handleItemClick = (item) => {
-  console.log('Item selected:', item.name);
+  inputRef.current.value = item.name; 
   setWordEntered(item.name)
-
+  
+  // clearInput()
+  console.log('inputRef',inputRef.current.value)
+  handleFilter()
+  setDisplayList(false)
 };
+
+
+const searchInput = (e) => {
+  props.onSetSearchKey(e)
+  props.onSearchInput(e)
+  clearInput()
+  console.log(e)
+}
 
   return (
     <div className={classes.search}>
       <div className={classes.searchInputs}>
         <input
+         
           type='text'
           placeholder='Search for your favorite artist...'
-          value={wordEntered}
-          onChange={e=>handleInputChange(e)}
+          ref={inputRef}
+          // value={wordEntered}
+          onChange={(e)=>handleInputChange(e)}
         />
         <div className={classes.searchIcon}>
             {filteredData.length === 0 ? (
-              <BiSearch/>
-            ) : (
+              <BiSearch onClick={e=> searchInput(e)}/>
+            ) 
+            : (
+              <div>
+               <BiSearch onClick={e=> searchInput(e)}/>
               <MdClear id="clearBtn" onClick={clearInput} />
-            )}
+              </div>
+            )
+            }
           </div>
       </div>
 
@@ -98,7 +124,7 @@ const handleItemClick = (item) => {
     </Spinner>
       } 
           {filteredData.map(item =>( 
-            <a className={classes.dataItem} onClick={() => handleItemClick(item)}>
+            <a className={classes.dataItem} onClick={()=> handleItemClick(item)}>
           {item.images && item.images[0] && item.images[0].url ? (
       <img src={item.images[0].url} alt='artist' style={{ height: 40, width: 40, borderRadius: 50 }}/>
     ) : (

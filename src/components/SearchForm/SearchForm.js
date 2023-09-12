@@ -50,9 +50,12 @@ const SearchForm = props => {
 
   const submitHandler = async e => {
     props.onDisplayModal()
-      e.preventDefault()
-
+      // e.preventDefault()
+ 
+      console.log(searchKey)
+      // if (e="") return; 
     if (!searchKey) return;
+    
    
     const { data } = await axios.get('https://api.spotify.com/v1/search', {
       headers: {
@@ -161,12 +164,13 @@ const SearchForm = props => {
           <button onClick={logout}>Logout</button>
         )}
         <div className='container'>
-          <Form onSubmit={submitHandler}>
-             <SearchBar onSetSearchKey={e => setSearchKey(e)} />
-            <Button className={classes.button} type='submit' onClick={submitHandler}>
+          {/* <Form onSubmit={submitHandler}> */}
+             <SearchBar onSetSearchKey={e => setSearchKey(e)} onSearchInput={submitHandler}/>
+             {/* <SearchBar onSearchInput={submitHandler}/> */}
+            {/* <Button className={classes.button} type='submit' onClick={submitHandler}>
               SEARCH
-            </Button>
-          </Form>
+            </Button> */}
+          {/* </Form> */}
         </div>
       </div>
     </div>

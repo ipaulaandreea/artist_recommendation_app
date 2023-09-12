@@ -3,7 +3,7 @@ import classes from './SearchResults.module.css'
 import Modal from '../UI/Modal/Modal'
 import RecommendationCard from '../RecommendationCard/RecommendationCard'
 import RecommendationItem from '../RecommendationItem/RecommendationItem'
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from 'react-bootstrap/Spinner'
 
 // import photo1 from '../../photo1.jpg'
 // import photo2 from '../../photo2.jpg'
@@ -51,15 +51,20 @@ import Spinner from 'react-bootstrap/Spinner';
 //     next_gig: 'Vancouver, 18th February 2024'
 //   }
 // ]
-const SearchResults =({recommendations}) => {
+
+//TODO: IF results=0, da un mesaj cu no results to show;
+const SearchResults = ({ recommendations }) => {
   return (
-<div>
-<div className={classes.container}>
-  {
-  Object.keys(recommendations).length === 0 &&
-  <Spinner className={classes.spinner} animation='border' role='status' id="idul"></Spinner>
-  }
-  
+    <div>
+      <div className={classes.container}>
+        {Object.keys(recommendations).length === 0 && (
+          <Spinner
+            className={classes.spinner}
+            animation='border'
+            role='status'
+            id='idul'
+          ></Spinner>
+        )}
 
         <div className={classes.parent}>
           {recommendations.map(artist => (
@@ -67,20 +72,30 @@ const SearchResults =({recommendations}) => {
               <RecommendationItem
                 id={artist.id}
                 key={artist.id}
-                photo={artist['images'][0]['url']}
+                photo={
+                  artist.images && artist.images.length > 0 ? (
+                    artist['images'][0]['url']
+                  ) : (
+                    <div
+                      style={{
+                        visibility: 'hidden',
+                      }}
+                    >
+                      {' '}
+                    </div>
+                  )
+                }
                 name={artist.name}
                 next_gig={`${artist.gigs.name} ${artist.gigs.city} ${artist.gigs.state} ${artist.gigs.date}`}
-                goToSpotify={`${artist["external_urls"]["spotify"]}`}
+                goToSpotify={`${artist['external_urls']['spotify']}`}
                 goToTickets={`${artist.gigs.tickets}`}
               />
             </div>
           ))}
         </div>
-
       </div>
-      </div>
-
+    </div>
   )
 }
 
-export default SearchResults;
+export default SearchResults
