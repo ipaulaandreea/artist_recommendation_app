@@ -1,7 +1,5 @@
-import react, { useState, useContext } from 'react'
+import react from 'react'
 import classes from './SearchResults.module.css'
-import Modal from '../UI/Modal/Modal'
-import RecommendationCard from '../RecommendationCard/RecommendationCard'
 import RecommendationItem from '../RecommendationItem/RecommendationItem'
 import Spinner from 'react-bootstrap/Spinner'
 
@@ -62,13 +60,13 @@ const SearchResults = ({ recommendations }) => {
             className={classes.spinner}
             animation='border'
             role='status'
-            id='idul'
+            id='spinner'
           ></Spinner>
         )}
 
         <div className={classes.parent}>
           {recommendations.map(artist => (
-            <div>
+            <div className={classes.recommendationItem}>
               <RecommendationItem
                 id={artist.id}
                 key={artist.id}
@@ -78,7 +76,7 @@ const SearchResults = ({ recommendations }) => {
                   ) : (
                     <div
                       style={{
-                        visibility: 'hidden',
+                        visibility: 'hidden'
                       }}
                     >
                       {' '}
@@ -87,9 +85,16 @@ const SearchResults = ({ recommendations }) => {
                 }
                 name={artist.name}
                 next_gig={`${artist.gigs.name} ${artist.gigs.city} ${artist.gigs.state} ${artist.gigs.date}`}
-                goToSpotify={`${artist['external_urls']['spotify']}`}
-                goToTickets={`${artist.gigs.tickets}`}
               />
+              {/* TODO: de bagat action si reco items in classes.parent css */}
+              <div className={classes.actions}>
+                <a href={`${artist['external_urls']['spotify']}`}>
+                  Go to Spotify
+                </a>
+                {artist.gigs.tickets !== '' && (
+                  <a href={`${artist.gigs.tickets}`}>Buy tickets</a>
+                )}
+              </div>
             </div>
           ))}
         </div>
