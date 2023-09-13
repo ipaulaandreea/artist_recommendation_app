@@ -63,7 +63,6 @@ const SearchResults = ({ recommendations }) => {
             id='spinner'
           ></Spinner>
         )}
-
         <div className={classes.parent}>
           {recommendations.map(artist => (
             <div className={classes.recommendationItem}>
@@ -85,16 +84,13 @@ const SearchResults = ({ recommendations }) => {
                 }
                 name={artist.name}
                 next_gig={`${artist.gigs.name} ${artist.gigs.city} ${artist.gigs.state} ${artist.gigs.date}`}
+                spotify={`${artist['external_urls']['spotify']}`}
+                gig_link={artist.gigs.tickets !== '' && (
+                <a href={artist.gigs.tickets}>Buy gig tickets</a>)
+                  
+                }
+              
               />
-              {/* TODO: de bagat action si reco items in classes.parent css */}
-              <div className={classes.actions}>
-                <a href={`${artist['external_urls']['spotify']}`}>
-                  Go to Spotify
-                </a>
-                {artist.gigs.tickets !== '' && (
-                  <a href={`${artist.gigs.tickets}`}>Buy tickets</a>
-                )}
-              </div>
             </div>
           ))}
         </div>
