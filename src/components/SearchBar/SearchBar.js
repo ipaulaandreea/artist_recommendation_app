@@ -93,6 +93,7 @@ const searchInput = (e) => {
 }
 
   return (
+    <div className={classes.container}>
     <div className={classes.search}>
       <div className={classes.searchInputs}>
         <input
@@ -135,6 +136,7 @@ const searchInput = (e) => {
             ))}
         </div>
   }
+    </div>
     </div>
   )}
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { Fragment } from 'react'
 import classes from './Modal.module.css'
 import ReactDOM from 'react-dom'
-import {Row, Col, Button} from 'react-bootstrap'
+import {Row, Col } from 'react-bootstrap'
 
 const Backdrop = props => {
   return <div className={classes.backdrop} onClick={props.onClose}></div>

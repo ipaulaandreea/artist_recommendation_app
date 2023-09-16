@@ -1,5 +1,3 @@
-.img {
-    width: 100%;
-    height: 5rem;
-
+.container {
+    display:block;
 }

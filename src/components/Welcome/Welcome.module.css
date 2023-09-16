@@ -1,0 +1,14 @@
+.container {
+    margin: 5rem 5rem 5rem 5rem;
+    padding: 5rem;
+    text-align: center;
+}
+.welcome {
+  font-size: 10vh;
+  color: white;
+  text-align: center;
+}
+
+.subheader {
+font-size: 5vh;
+}

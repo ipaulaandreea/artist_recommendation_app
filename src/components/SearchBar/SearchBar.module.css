@@ -1,3 +1,7 @@
+.container {
+  align-items: center;
+}
+
 .searchInputs {
     margin-top: 105px;
     display: flex;

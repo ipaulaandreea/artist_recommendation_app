@@ -1,32 +1,9 @@
 body {
-  background-image: url(bckg3.jpg);   
-  min-height: 100%;
-  min-width: 1024px;
-	
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
 
-  width: 100%;
-  height: auto;
-	
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  font-family: 'Bebas Neue', sans-serif;
-
+  font-family: 'GT Walsheim Medium', sans-serif;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat+Alternates:wght@300&family=Roboto+Condensed:wght@300&display=swap');
-/* 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  font-family: 'Montserrat Alternates', sans-serif;
-  font-family: 'Roboto Condensed', sans-serif;
-}
-
-
- */

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Image, Card, Form, Button } from 'react-bootstrap'
-import backgroundImage from '../../bckg3.jpg'
 import classes from './SearchForm.module.css'
 import axios from 'axios'
 import SearchResults from '../SearchResults/SearchResults.js'
 import SearchBar from '../SearchBar/SearchBar.js'
+import Login from '../Login/Login.js'
 
 const slugify = str => {
   return str
@@ -149,11 +149,8 @@ const SearchForm = props => {
   }
 
   return (
-    <div>
-      <h1 className='display-5 fw-bold p-5' style={{ color: 'White' }}>
-        Find similar artists. See their gigs.
-      </h1>
       <div>
+       
         {!token ? (
           <a
             href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
@@ -172,8 +169,9 @@ const SearchForm = props => {
             </Button> */}
           {/* </Form> */}
         </div>
+        
       </div>
-    </div>
+  
   )
 }
 
