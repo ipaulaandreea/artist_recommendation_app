@@ -8,6 +8,7 @@ const SearchConcertsForSimilarArtists = props => {
   const [recommendationsState, setRecommendationsState] = useState([])
   const [displayModal, setDisplayModal] = useState(false)
 
+
   useEffect(() => { 
     console.log('state:',recommendationsState)
   }, [recommendationsState]);
@@ -27,18 +28,22 @@ const SearchConcertsForSimilarArtists = props => {
     setRecommendationsState([])
   }
 
+
   return (
     <div>
-      <Login/> 
+      <Login/>
       <SearchForm
-        onChange={handleState}
-        onDisplayModal={displayModalHandler}
-      />
-      {displayModal && (
-        <Modal onClose={hideModalHandler}>
-          <SearchResults recommendations={recommendationsState} />
-        </Modal>
-      )}
+      onChange={handleState}
+      onDisplayModal={displayModalHandler}
+    />
+    {displayModal && (
+      <Modal onClose={hideModalHandler}>
+        <SearchResults recommendations={recommendationsState} />
+      </Modal>
+    )}
+
+    
+
     </div>
   )
 }

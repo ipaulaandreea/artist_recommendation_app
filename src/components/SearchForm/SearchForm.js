@@ -16,47 +16,48 @@ const slugify = str => {
 }
 
 const SearchForm = props => {
-  const CLIENT_ID = '6674cfd3c7f24b579bdf58acd6f13d95'
-  const REDIRECT_URI = 'http://localhost:3000/'
-  const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
-  const RESPONSE_TYPE = 'token'
+  // const CLIENT_ID = '6674cfd3c7f24b579bdf58acd6f13d95'
+  // const REDIRECT_URI = 'http://localhost:3000/'
+  // const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
+  // const RESPONSE_TYPE = 'token'
   const SEATGEEKCLIENT_ID = 'MzU4NDU3NTl8MTY5MzY1OTI0NS4wMzYyMTgy'
 
-  const [token, setToken] = useState('')
+  // const [token, setToken] = useState('')
   const [searchKey, setSearchKey] = useState('')
   const [artist, setArtist] = useState('')
   const [recommendedArtists, setRecommendedArtists] = useState([])
 
+  // useEffect(() => {
+  //   const hash = window.location.hash
+  //   let token = window.localStorage.getItem('token')
+  //   if (!token && hash) {
+  //     token = hash
+  //       .substring(1)
+  //       .split('&')
+  //       .find(elem => elem.startsWith('access_token'))
+  //       .split('=')[1]
+  //     window.location.hash = ''
+  //     window.localStorage.setItem('token', token)
+  //   }
+  //   setToken(token)
+  // }, [recommendedArtists])
 
-  useEffect(() => {
-    const hash = window.location.hash
-    let token = window.localStorage.getItem('token')
-    if (!token && hash) {
-      token = hash
-        .substring(1)
-        .split('&')
-        .find(elem => elem.startsWith('access_token'))
-        .split('=')[1]
-      window.location.hash = ''
-      window.localStorage.setItem('token', token)
-    }
-    setToken(token)
-  }, [recommendedArtists])
-
-  const logout = () => {
-    setToken('')
-    window.localStorage.removeItem('token')
-  }
+  // const logout = () => {
+  //   setToken('')
+  //   window.localStorage.removeItem('token')
+  // }
 
   const submitHandler = async e => {
     props.onDisplayModal()
+
       // e.preventDefault()
  
       console.log(searchKey)
       // if (e="") return; 
     if (!searchKey) return;
+
     
-   
+    let token = window.localStorage.getItem('token')
     const { data } = await axios.get('https://api.spotify.com/v1/search', {
       headers: {
         Authorization: `Bearer ${token}`
@@ -149,9 +150,8 @@ const SearchForm = props => {
   }
 
   return (
-      <div>
-       
-        {!token ? (
+    <div className='container'>
+        {/* {!token ? (
           <a
             href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
           >
@@ -159,17 +159,9 @@ const SearchForm = props => {
           </a>
         ) : (
           <button onClick={logout}>Logout</button>
-        )}
-        <div className='container'>
-          {/* <Form onSubmit={submitHandler}> */}
+        )} */}
+
              <SearchBar onSetSearchKey={e => setSearchKey(e)} onSearchInput={submitHandler}/>
-             {/* <SearchBar onSearchInput={submitHandler}/> */}
-            {/* <Button className={classes.button} type='submit' onClick={submitHandler}>
-              SEARCH
-            </Button> */}
-          {/* </Form> */}
-        </div>
-        
       </div>
   
   )

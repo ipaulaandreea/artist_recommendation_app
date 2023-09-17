@@ -6,6 +6,8 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.8",
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/react-native-fontawesome": "^0.3.0",
     "@mui/icons-material": "^5.14.3",
     "@mui/material": "^5.14.5",
     "@mui/system": "^5.14.5",
@@ -20,6 +22,7 @@
     "react-bootstrap": "^2.8.0",
     "react-dom": "^18.0.0",
     "react-icons": "^4.11.0",
+    "react-native-svg": "^13.13.0",
     "react-scripts": "^5.0.1",
     "web-vitals": "^0.2.4"
   },
