@@ -1,0 +1,28 @@
+@import url('https://fonts.cdnfonts.com/css/gilroy-bold');
+@import url('https://fonts.cdnfonts.com/css/gilroy-bold?styles=20879');
+
+.container3 {
+    /* background-color: brown; */
+    padding: 2px;
+    margin: 20px;
+    /* height: 70%; */
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    z-index:100;
+    justify-content: center;
+}
+
+.welcome {
+    font-family: 'Gilroy-Bold', sans-serif;
+    font-size: 10vh;
+    color: #f9f7f1;
+    align-self: center;
+  
+  
+  }
+  
+  .subheader {
+    font-family: 'Gilroy-Medium', sans-serif;
+  font-size: 5vh;
+  }

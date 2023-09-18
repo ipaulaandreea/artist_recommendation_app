@@ -2,14 +2,20 @@
   box-sizing: border-box;
 }
 body {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
   background: rgb(142,113,142);
-background: linear-gradient(16deg, rgba(142,113,142,1) 0%, rgba(255,144,144,1) 100%);
+  background: linear-gradient(16deg, rgba(142,113,142,1) 0%, rgba(255,144,144,1) 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: 'GT Walsheim Medium', sans-serif;
 
+
 } 
+
+.container1 {
+  height:40em;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  /* background: teal; */
+
+}
 

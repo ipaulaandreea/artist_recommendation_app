@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Container from 'react-bootstrap/Container';
 import classes from './Login.module.css'
 
 
@@ -34,17 +35,15 @@ const Login = (props) => {
   }
 
   return (
-    <div className={classes.container}>
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className={classes.arrowDown} viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
-</svg>
+<Container className={classes.container6}>
+
         <p>Step 1 </p>
       <a
         href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
       >
         Login to Spotify{' '}
       </a>
-    </div>
+    </Container>
   )
 }
 

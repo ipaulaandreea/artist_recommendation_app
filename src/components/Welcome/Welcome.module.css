@@ -1,8 +1,17 @@
-@import url('https://fonts.cdnfonts.com/css/gilroy-bold');
-@import url('https://fonts.cdnfonts.com/css/gilroy-bold?styles=20879');
 
-.container {
-  position: absolute;
+.container2 {
+  /* background-color: blueviolet; */
+  display: flex;
+  flex-direction: row;
+  height: 40em;
+
+}
+
+
+
+/* .container { */
+
+  /* position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -12,47 +21,27 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 2% 5%;
-}
+  padding: 2% 2%; */
+  /* position: absolute;
+  padding: 2% 2%; */
+  
+/* } */
 
-.dot {
-  position: relative;
+/* .dot { */
+  /* position: relative;
   padding: 2px;
   margin: 10px;
   bottom: 0px;
   left: 0px; 
-  height: 50%;
-  width: 50%;
+  height: 70%;
+  width: 80%;
   background-color: #e3ae01;
-  z-index: 10;
-}
+  z-index: 10; */
+/* } */
 
-.box {
-  display: flex;
-  flex-direction: column;
-  margin-right: auto;
-  margin-left: 50px;
-  justify-content: flex-start;
-  align-items: center;
-  text-align: center;
-  flex-wrap: nowrap;
-  z-index:30;
-
-
-
-}
-
-.welcome {
-  font-family: 'Gilroy-Bold', sans-serif;
-  font-size: 10vh;
-  color: white;
-
-
-}
-
-.subheader {
-  font-family: 'Gilroy-Medium', sans-serif;
-font-size: 5vh;
-}
+/* .container { */
+  /* display: flex;
+  flex-direction: row; */
+/* } */
 
 
