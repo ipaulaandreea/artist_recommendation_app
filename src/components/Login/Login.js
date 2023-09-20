@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Container from 'react-bootstrap/Container';
+import {Container, Button }  from 'react-bootstrap';
 import classes from './Login.module.css'
 
 
@@ -38,11 +38,13 @@ const Login = (props) => {
 <Container className={classes.container6}>
 
         <p>Step 1 </p>
+        <Button className={classes.btn}>
       <a
         href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
       >
         Login to Spotify{' '}
       </a>
+      </Button>
     </Container>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import classes from './Message.module.css'
 import { motion } from 'framer-motion'
+import Login from '../Login/Login.js'
 
 const Message = () => {
     return (
@@ -19,8 +20,9 @@ const Message = () => {
             ease: 'easeOut',
             duration: 0.5
           }}
-        >
-          Welcome to Recommend
+        ><h1>
+                 Welcome to Recommend
+        </h1>
         </motion.div>
 
         <motion.div
@@ -37,9 +39,13 @@ const Message = () => {
             duration: 0.5
           }}
         >
+          <h5>
           An app that recommends artists based on your preferences and shows you
           their upcoming concerts.
+          </h5>
+
         </motion.div>
+        <Login/>
               </Container>
 
     )

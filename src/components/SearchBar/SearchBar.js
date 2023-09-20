@@ -4,6 +4,7 @@ import classes from './SearchBar.module.css'
 import Spinner from 'react-bootstrap/Spinner';
 import { BiSearch } from 'react-icons/bi';
 import { MdClear } from 'react-icons/md';
+import {Container, Button, Dropdown }  from 'react-bootstrap';
 
 
 
@@ -93,15 +94,9 @@ const searchInput = (e) => {
 }
 
   return (
-    <div className={classes.container}>
-      {/* <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className={classes.arrowDown} viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
-</svg> */}
+    <Container className={classes.container7}>
         <p>Step 2 </p>
-
-
-
-    <div className={classes.search}>
+    <Container className={classes.search}>
       <div className={classes.searchInputs}>
         <input
           type='text'
@@ -125,12 +120,13 @@ const searchInput = (e) => {
       </div>
 
     {(displayList && wordEntered!=="")  &&
-        <div className={classes.dataResult}>
+        <Container className={classes.dataResult}>
           {isLoading && 
           <Spinner className={classes.spinner} animation="border" role="status" >
     </Spinner>
       } 
           {filteredData.map(item =>( 
+         
             <a className={classes.dataItem} onClick={()=> handleItemClick(item)}>
           {item.images && item.images[0] && item.images[0].url ? (
       <img src={item.images[0].url} alt='artist' style={{ height: 40, width: 40, borderRadius: 50 }}/>
@@ -138,12 +134,14 @@ const searchInput = (e) => {
         <div className={classes.noImageText} style={{ height: 40, width: 40, borderRadius: 50 }} ></div>
     )}  
                 <p>{item.name}</p>
+              
               </a>
+
             ))}
-        </div>
+        </Container>
   }
-    </div>
-    </div>
+    </Container>
+</Container>
   )}
 
 export default SearchBar

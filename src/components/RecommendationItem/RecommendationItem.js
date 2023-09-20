@@ -1,25 +1,30 @@
 import react from 'react'
 import classes from './RecommendationItem.module.css'
 import RecommendationCard from '../RecommendationCard/RecommendationCard'
+import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image';
 
 const RecommendationItem = props => {
   return (
-    <RecommendationCard>
-      <div className={classes['artist']}>
-        <img
+    // <RecommendationCard>
+      <Container className={classes.artist}>
+        <Image className={classes.img} src={props.photo} roundedCircle />
+        {/* <img
           className={classes['artist']['img']}
           src={props.photo}
           alt='  '
-        ></img>
-
-        <span className={classes['name']}>{props.name}</span>
-        <span className={classes['nextgig']}>Next gig: {props.next_gig}</span>
-        <div className={classes.actions}>
+        ></img> */}
+        
+<Container className={classes.text}>
+        <h4>{props.name}</h4>
+        <h6>{props.next_gig}</h6>
+        <Container className={classes.actions}>
         <a href={props.spotify}>Go to Spotify</a>
         {props.gig_link}
-        </div>
-      </div>
-    </RecommendationCard>
+        </Container>
+      </Container>
+      </Container>
+    // </RecommendationCard>
   )
 }
 

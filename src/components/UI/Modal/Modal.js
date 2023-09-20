@@ -2,16 +2,21 @@ import React from 'react'
 import { Fragment } from 'react'
 import classes from './Modal.module.css'
 import ReactDOM from 'react-dom'
-import {Row, Col } from 'react-bootstrap'
+import {Row, Col, Container } from 'react-bootstrap'
 
 const Backdrop = props => {
   return <div className={classes.backdrop} onClick={props.onClose}></div>
 };
 const ModalOverlay=props=>{
-  return <div className={classes.modal}>
-          <Row>
-        <Col> <div className={classes.content}>{props.children}</div></Col>
-      </Row>
+  return <Container fluid="md" className={classes.container}>
+
+  <Row className={classes.modal}>
+    <Col>
+        {props.children}
+        </Col>
+{/*         
+        <Col>
+
       <button
             className={classes.button}
             type='submit'
@@ -19,9 +24,9 @@ const ModalOverlay=props=>{
           >
             LOOK UP ANOTHER ARTIST
           </button>
-
-
-  </div>
+          </Col> */}
+          </Row>
+  </Container>
 };
 
 const portalElement=document.getElementById('overlays');

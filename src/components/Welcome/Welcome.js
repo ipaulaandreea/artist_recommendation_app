@@ -10,11 +10,19 @@ import classes from './Welcome.module.css'
 const Welcome = () => {
   return (
     <Container className={classes.container2}> 
+    <Row className={classes.row}>
+    <Col md={6} className={classes.col}>
+    <Message/>
+      
+</Col>
+<Col md={6} className={classes.col}>
 <Box>
 <SearchConcertsForSimilarArtists/>
 </Box>
-   <Message/>
+</Col>
+</Row>
 </Container>
+
 
   )
 }

@@ -1,11 +1,14 @@
 .container4 {
     justify-content: center;
+    text-align: center;
     align-items: center;
-    padding: 2px;
-    margin: 20px;
-    /* height: 70%; */
-    width: 80%;
+    /* padding: 2px; */
+    /* margin-top: 10px;  */
+    margin-bottom: 10px; 
+    height: 100%;
+    width: 100%;
     background-color: #f9f7f1;
+    
     z-index: 10;
-    border-radius: 25px;
+    border-radius: 30px;
 }
