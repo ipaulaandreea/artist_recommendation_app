@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './Box.module.css'
-import SearchBar from '../SearchBar/SearchBar.js'
 import Container from 'react-bootstrap/Container';
 
 const Box = (props) => {

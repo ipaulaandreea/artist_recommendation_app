@@ -1,24 +1,13 @@
 
 .container {
-  /* padding-top: 50vh;
-  width: 40%;
-  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 200px; */
+  justify-content: center;
+  gap: 20px;
+  margin: 2rem ;
+  font-family: 'Gilroy-Medium', sans-serif;
 
 }
-
-.button {
-    font-size: 1rem; 
-    font-weight: 500; 
-    border: 0 ;
-    border-radius: 0; 
-    background: #ff3366; 
-    padding: 10px 30px;
-    color: White;
-    grid-column: span 2;
-  }
 
 

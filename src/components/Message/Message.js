@@ -45,7 +45,7 @@ const Message = () => {
           </h5>
 
         </motion.div>
-        <Login/>
+        {/* <Login/> */}
               </Container>
 
     )

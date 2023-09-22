@@ -7,19 +7,17 @@ import { MdClear } from 'react-icons/md';
 import {Container, Button, Dropdown }  from 'react-bootstrap';
 
 
-
   const SearchBar = (props) => {
   const [filteredData, setFilteredData] = useState([])
   const [wordEntered, setWordEntered] = useState('')
   const [displayList, setDisplayList] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-
   const inputRef = useRef(null);
 
   useEffect(() => {
     const timer=setTimeout(() => {
       handleFilter();
-    }, 5000); 
+    }, 10000); 
     return ()=> clearTimeout(timer) 
   }, [wordEntered]);
 
@@ -78,8 +76,6 @@ const handleInputChange=(event)=>{
 const handleItemClick = (item) => {
   inputRef.current.value = item.name; 
   setWordEntered(item.name)
-  
-  // clearInput()
   console.log('inputRef',inputRef.current.value)
   handleFilter()
   setDisplayList(false)
@@ -93,7 +89,9 @@ const searchInput = (e) => {
   console.log(e)
 }
 
+
   return (
+   
     <Container className={classes.container7}>
         <p>Step 2 </p>
     <Container className={classes.search}>
@@ -126,7 +124,6 @@ const searchInput = (e) => {
     </Spinner>
       } 
           {filteredData.map(item =>( 
-         
             <a className={classes.dataItem} onClick={()=> handleItemClick(item)}>
           {item.images && item.images[0] && item.images[0].url ? (
       <img src={item.images[0].url} alt='artist' style={{ height: 40, width: 40, borderRadius: 50 }}/>
@@ -134,7 +131,6 @@ const searchInput = (e) => {
         <div className={classes.noImageText} style={{ height: 40, width: 40, borderRadius: 50 }} ></div>
     )}  
                 <p>{item.name}</p>
-              
               </a>
 
             ))}
@@ -143,5 +139,6 @@ const searchInput = (e) => {
     </Container>
 </Container>
   )}
+  
 
 export default SearchBar

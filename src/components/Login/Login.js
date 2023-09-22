@@ -8,12 +8,14 @@ const Login = (props) => {
   const REDIRECT_URI = 'http://localhost:3000/'
   const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
   const RESPONSE_TYPE = 'token'
-
   const [token, setToken] = useState('')
+
+
 
   useEffect(() => {
     const hash = window.location.hash
     let token;
+  
     // let token = window.localStorage.getItem('token') 
     if (!token && hash) {
       token = hash
@@ -23,27 +25,42 @@ const Login = (props) => {
         .split('=')[1]
       window.location.hash = ''
       window.localStorage.setItem('token', token)
+   
+      
     }
+    
     setToken(prevToken=>token)
+    if (token !==undefined){
+      props.onLogin();
+    }
+    
   }, [])
 
   
 
   const logout = () => {
     setToken('')
+    props.onLogout();
     window.localStorage.removeItem('token')
+
+
   }
 
   return (
 <Container className={classes.container6}>
 
         <p>Step 1 </p>
+
         <Button className={classes.btn}>
+        {!props.isLoggedIn ?  (
       <a
         href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
       >
         Login to Spotify{' '}
-      </a>
+      </a> ) : (
+           <button className={classes.btn}
+          onClick={logout}>Logout </button>
+        )} 
       </Button>
     </Container>
   )
