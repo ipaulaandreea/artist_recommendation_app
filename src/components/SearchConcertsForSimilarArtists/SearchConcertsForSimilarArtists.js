@@ -44,7 +44,7 @@ const SearchConcertsForSimilarArtists = props => {
     <div>
       <Container className={classes.container5}>
         <Login isLoggedIn={isLoggedIn} onLogin={loginHandler} onLogout={logoutHandler} />
-        {isLoggedIn && (
+        {/* {isLoggedIn && ( */}
           <>
             <SearchForm onChange={handleState} onDisplayModal={displayModalHandler} />
             {displayModal && (
@@ -53,7 +53,7 @@ const SearchConcertsForSimilarArtists = props => {
               </Modal>
             )}
           </>
-        )}
+        {/* )} */}
       </Container>
     </div>
   );
