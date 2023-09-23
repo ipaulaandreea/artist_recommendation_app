@@ -6,14 +6,10 @@ import Image from 'react-bootstrap/Image';
 
 const RecommendationItem = props => {
   return (
-    // <RecommendationCard>
+
       <Container className={classes.artist}>
-        <Image className={classes.img} src={props.photo} roundedCircle />
-        {/* <img
-          className={classes['artist']['img']}
-          src={props.photo}
-          alt='  '
-        ></img> */}
+        
+        <Image className={classes.img} src={props.photo} />
         
 <Container className={classes.text}>
         <h4>{props.name}</h4>
@@ -24,7 +20,7 @@ const RecommendationItem = props => {
         </Container>
       </Container>
       </Container>
-    // </RecommendationCard>
+
   )
 }
 

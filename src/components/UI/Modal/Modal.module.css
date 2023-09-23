@@ -21,26 +21,14 @@
 
 }
 .modal {
-  /* left: 50%;
-  top: 50%; */
   display:flex;
   flex-direction: column;
   margin: 20px;
-  /* margin: 10px 10px 10px 10px; */
-  /* margin:auto;
-  transform: translate(-50%, -50%); */
   position: fixed;
   align-items: center;
   overflow-y: scroll;
   height: 90%;
   width: 90%;
-
-
-  
-  /* top: 10vh;
-  left: 5%; */
-
-
   background-color: #f9f7f1;
   padding: 1rem;
   border-radius: 14px;
@@ -51,12 +39,11 @@
 
 }
 
-/* @media (min-width: 768px) {
+ /* @media (min-width: 768px) {
   .modal {
-    width: 80rem;
-    left: calc(50% - 40rem);
   }
-}  */
+} */
+
 
 @keyframes slide-down {
   from {

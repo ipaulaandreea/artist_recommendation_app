@@ -1,9 +1,9 @@
 
 .container2 {
-  /* background-color: blueviolet; */
   display: flex;
   flex-direction: row;
   height: 34em;
+  align-items: center;
 
 }
 

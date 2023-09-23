@@ -12,10 +12,10 @@ body {
 } 
 
 .container1 {
-  height:34em;
+  /* height:30em; */
   margin-top: 2%;
   margin-bottom: 2%;
-  /* background: teal; */
+  padding: 30px;
 
 }
 

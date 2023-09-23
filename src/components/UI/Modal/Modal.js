@@ -14,17 +14,6 @@ const ModalOverlay=props=>{
     <Col>
         {props.children}
         </Col>
-{/*         
-        <Col>
-
-      <button
-            className={classes.button}
-            type='submit'
-            onClick={props.onClose}
-          >
-            LOOK UP ANOTHER ARTIST
-          </button>
-          </Col> */}
           </Row>
   </Container>
 };
