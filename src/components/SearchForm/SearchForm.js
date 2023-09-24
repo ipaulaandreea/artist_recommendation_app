@@ -21,7 +21,6 @@ const SearchForm = props => {
 
   const submitHandler = async e => {
     props.onDisplayModal()
-    console.log(e)
       if (!e) return; 
    
 

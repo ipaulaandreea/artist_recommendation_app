@@ -2,9 +2,8 @@ import react from 'react'
 import classes from './SearchResults.module.css'
 import RecommendationItem from '../RecommendationItem/RecommendationItem'
 import Spinner from 'react-bootstrap/Spinner'
-import {Row, Col, Container, CardGroup,  Card} from 'react-bootstrap'
+import {Row, Col, Container, CardGroup,  Card, Button } from 'react-bootstrap'
 
-//TODO: IF results=0, da un mesaj cu no results to show;
 const SearchResults = ({ recommendations }) => {
   return (
     <div>
@@ -18,7 +17,7 @@ const SearchResults = ({ recommendations }) => {
             id='spinner'
           ></Spinner>
         ) : ( recommendations.map((artist, index) => (
-          <Col className={classes.col} key={artist.id} sm={6}>
+          <Col className={classes.col} key={artist.id} lg={12} sm={12} md={12}>
             <CardGroup>
             <Card className={classes.card}>
               <RecommendationItem
@@ -33,7 +32,7 @@ const SearchResults = ({ recommendations }) => {
                 spotify={artist.external_urls.spotify}
                 gig_link={
                   artist.gigs.tickets !== '' && (
-                    <a href={artist.gigs.tickets}>Buy gig tickets</a>
+                    <Button className={classes.gigbtn} href={artist.gigs.tickets}>Buy tickets</Button>
                   )
                 }
               />
